@@ -1,3 +1,6 @@
+import { ArrowLeftIcon } from 'lucide-react';
+import Link from 'next/link';
+
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -9,11 +12,15 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import Link from 'next/link';
 
 export default function Login() {
   return (
-    <section className='w-full h-screen flex items-center justify-center px-4'>
+    <section className='relative w-full h-screen flex items-center justify-center px-4'>
+      <Link href={'/'} className='absolute top-4 left-4 flex items-center gap-2'>
+        <ArrowLeftIcon size={18}/>
+        Voltar para a página inicial
+      </Link>
+
       <Card className='w-full max-w-sm'>
         <CardHeader>
           <CardTitle className='text-2xl'>Login</CardTitle>
