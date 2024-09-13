@@ -1,4 +1,5 @@
-import { ArrowLeftIcon } from 'lucide-react';
+'use client';
+
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
@@ -12,25 +13,23 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import login from '../_actions/login';
 
-export default function Login() {
+export function LoginForm() {
   return (
-    <section className='relative w-full h-screen flex items-center justify-center px-4'>
-      <Link href={'/'} className='absolute top-4 left-4 flex items-center gap-2'>
-        <ArrowLeftIcon size={18}/>
-        Voltar para a página inicial
-      </Link>
+    <Card className='w-full max-w-sm'>
+      <CardHeader>
+        <CardTitle className='text-2xl'>Login</CardTitle>
+        <CardDescription>Entre com email e senha.</CardDescription>
+      </CardHeader>
 
-      <Card className='w-full max-w-sm'>
-        <CardHeader>
-          <CardTitle className='text-2xl'>Login</CardTitle>
-          <CardDescription>Entre com email e senha.</CardDescription>
-        </CardHeader>
+      <form action={login}>
         <CardContent className='grid gap-4'>
           <div className='grid gap-2'>
             <Label htmlFor='email'>Email</Label>
             <Input
               id='email'
+              name='email'
               type='email'
               placeholder='email@exemplo.com'
               required
@@ -40,17 +39,19 @@ export default function Login() {
             <Label htmlFor='password'>Senha</Label>
             <Input
               id='password'
+              name='password'
               type='password'
               placeholder='*********'
               required
             />
           </div>
         </CardContent>
+
         <CardFooter className='flex flex-col gap-4'>
           <Button className='w-full'>Entrar</Button>
           <Link href={'/register'}>Não possui uma conta?</Link>
         </CardFooter>
-      </Card>
-    </section>
+      </form>
+    </Card>
   );
 }

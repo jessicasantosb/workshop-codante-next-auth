@@ -20,7 +20,7 @@ export default function Home() {
         </div>
 
         <Button size={'full'}>
-          <Link href={'/'}>Login - Server Components</Link>
+          <Link href={'/login-server'}>Login - Server Components</Link>
         </Button>
         <Button size={'full'}>
           <Link href={'/'}>Login - Client Components</Link>
