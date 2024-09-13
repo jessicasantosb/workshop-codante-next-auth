@@ -15,7 +15,7 @@ export default function Home() {
             <Link href={'/dashboard'}>Dashboard</Link>
           </Button>
           <Button size={'full'}>
-            <Link href={'/login'}>Login simples</Link>
+            <Link href={'/api/auth/signin'}>Login simples</Link>
           </Button>
         </div>
 
