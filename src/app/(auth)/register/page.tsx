@@ -1,10 +1,11 @@
-import RegisterForm from '@/components/RegisterForm';
 import { ArrowLeftIcon } from 'lucide-react';
 import Link from 'next/link';
 
+import RegisterForm from './_components/RegisterForm';
+
 export default function Register() {
   return (
-    <section className='w-full h-screen flex items-center justify-center px-4'>
+    <>
       <Link
         href={'/'}
         className='absolute top-4 left-4 flex items-center gap-2'
@@ -14,6 +15,6 @@ export default function Register() {
       </Link>
 
       <RegisterForm />
-    </section>
+    </>
   );
 }
