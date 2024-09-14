@@ -23,7 +23,7 @@ export default function Home() {
           <Link href={'/login-server'}>Login - Server Components</Link>
         </Button>
         <Button size={'full'}>
-          <Link href={'/'}>Login - Client Components</Link>
+          <Link href={'/login-client'}>Login - Client Components</Link>
         </Button>
         <Button size={'full'} className='flex gap-2'>
           <Github />

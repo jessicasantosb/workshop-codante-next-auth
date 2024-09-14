@@ -13,17 +13,20 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import login from '../_actions/login';
 
-export function LoginForm() {
+export function LoginClientForm() {
+  const handleLogin = () => {
+    console.log('login')
+  };
+
   return (
     <Card className='w-full max-w-sm'>
       <CardHeader>
-        <CardTitle className='text-2xl'>Login - Server Component</CardTitle>
+        <CardTitle className='text-2xl'>Login - Client Component</CardTitle>
         <CardDescription>Entre com email e senha.</CardDescription>
       </CardHeader>
 
-      <form action={login}>
+      <form onSubmit={handleLogin}>
         <CardContent className='grid gap-4'>
           <div className='grid gap-2'>
             <Label htmlFor='email'>Email</Label>
