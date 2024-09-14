@@ -1,13 +1,14 @@
 import { compareSync } from 'bcrypt-ts';
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
+import GithubProvider from 'next-auth/providers/github';
 import db from './lib/db';
 
 export const {
   handlers: { GET, POST },
   auth,
   signIn,
-  signOut
+  signOut,
 } = NextAuth({
   providers: [
     Credentials({
@@ -36,5 +37,6 @@ export const {
         return null;
       },
     }),
+    GithubProvider({ }),
   ],
 });

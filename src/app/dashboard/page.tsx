@@ -8,7 +8,7 @@ import { redirect } from 'next/navigation';
 export default async function Dashboard() {
   const session = await auth();
 
-  if (!session) return redirect('/login-server');
+  if (!session) redirect('/');
 
   return (
     <section className='min-h-screen w-full flex flex-col items-center gap-14 p-20'>

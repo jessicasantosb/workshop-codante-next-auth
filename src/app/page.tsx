@@ -27,7 +27,7 @@ export default function Home() {
         </Button>
         <Button size={'full'} className='flex gap-2'>
           <Github />
-          <Link href={'/'}>Login com Github</Link>
+          <Link href={'/login-github'}>Login com Github</Link>
         </Button>
         <Button size={'full'} className='flex gap-2'>
           <Mail />
