@@ -1,15 +1,14 @@
-'use client';
-
-import { Button } from '@/components/ui/button';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 
-export default function Dashboard() {
-  const { data, status } = useSession();
+import { logout } from '@/app/(auth)/_actions/logout';
+import { auth } from '@/auth';
+import { Button } from '@/components/ui/button';
+import { redirect } from 'next/navigation';
 
-  const isLogged = status === 'authenticated';
-  const isLoading = status === 'loading';
-  const userName = data?.user?.name;
+export default async function Dashboard() {
+  const session = await auth();
+
+  if (!session) return redirect('/login-server');
 
   return (
     <section className='min-h-screen w-full flex flex-col items-center gap-14 p-20'>
@@ -17,27 +16,23 @@ export default function Dashboard() {
         Dashboard
       </h1>
 
-      {isLoading ? (
-        <p>Carregando...</p>
-      ) : (
-        <>
-          {isLogged && (
-            <p className='text-xl tracking-widest'>Olá, {userName}!</p>
-          )}
+      <p className='text-xl text-muted-foreground tracking-widest'>
+        Olá, {session?.user?.name}!
+      </p>
 
-          <div className='w-full max-w-96 flex items-center gap-4'>
-            <Button size={'full'} variant={'secondary'}>
-              <Link href={'/'}>Página Inicial</Link>
-            </Button>
+      <hr className='w-full mx-auto my-2' />
 
-            {isLogged && (
-              <Button size={'full'} variant={'logout'}>
-                Logout
-              </Button>
-            )}
-          </div>
-        </>
-      )}
+      <div className='w-full max-w-96 flex flex-col gap-4'>
+        <Button size={'full'} variant={'secondary'}>
+          <Link href={'/'}>Página Inicial</Link>
+        </Button>
+
+        <form action={logout}>
+          <Button size={'full'} variant={'logout'}>
+            Logout
+          </Button>
+        </form>
+      </div>
     </section>
   );
 }

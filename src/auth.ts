@@ -6,7 +6,8 @@ import db from './lib/db';
 export const {
   handlers: { GET, POST },
   auth,
-  signIn
+  signIn,
+  signOut
 } = NextAuth({
   providers: [
     Credentials({
