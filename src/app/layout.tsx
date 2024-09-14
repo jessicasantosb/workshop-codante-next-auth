@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import { Dosis } from 'next/font/google';
 import './globals.css';
 
@@ -16,7 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='pt-BR'>
-      <body className={dosis.className}>{children}</body>
+      <body className={dosis.className}>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }

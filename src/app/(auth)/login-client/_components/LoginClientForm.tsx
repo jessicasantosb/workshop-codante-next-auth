@@ -1,6 +1,8 @@
 'use client';
 
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import {
@@ -13,10 +15,34 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useRouter } from 'next/navigation';
 
 export function LoginClientForm() {
-  const handleLogin = () => {
-    console.log('login')
+  const [error, setError] = useState<string | null>(null);
+
+  const router = useRouter();
+
+  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email');
+    const password = formData.get('password');
+
+    signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: '/dashboard',
+    })
+      .then((res) => {
+        if (res && res.error === 'CredentialsSignin') {
+          setError('Email e/ou senha inválidos!');
+        } else {
+          router.replace('/dashboard');
+        }
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
@@ -51,6 +77,7 @@ export function LoginClientForm() {
         </CardContent>
 
         <CardFooter className='flex flex-col gap-4'>
+          {error && <p className='text-red-500'>{error}</p>}
           <Button className='w-full'>Entrar</Button>
           <Link href={'/register'}>Não possui uma conta?</Link>
         </CardFooter>

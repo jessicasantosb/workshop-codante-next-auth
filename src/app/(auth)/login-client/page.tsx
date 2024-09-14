@@ -1,10 +1,19 @@
+'use client';
+
 import { ArrowLeftIcon } from 'lucide-react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { LoginClientForm } from './_components/LoginClientForm';
 
 export default function LoginClient() {
+  const { status } = useSession();
+  const router = useRouter();
+
+  if (status === 'authenticated') return router.replace('/dashboard');
+
   return (
-    <section className='relative w-full h-screen flex items-center justify-center px-4'>
+    <>
       <Link
         href={'/'}
         className='absolute top-4 left-4 flex items-center gap-2'
@@ -14,6 +23,6 @@ export default function LoginClient() {
       </Link>
 
       <LoginClientForm />
-    </section>
+    </>
   );
 }
