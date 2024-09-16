@@ -45,6 +45,8 @@ export const {
         return null;
       },
     }),
-    GithubProvider({}),
+    GithubProvider({
+      allowDangerousEmailAccountLinking: true,
+    }),
   ],
 });
