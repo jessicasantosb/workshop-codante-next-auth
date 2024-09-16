@@ -31,7 +31,7 @@ export default function Home() {
         </Button>
         <Button size={'full'} className='flex gap-2'>
           <Mail />
-          <Link href={'/'}>Login com Email</Link>
+          <Link href={'/login-email'}>Login com Email</Link>
         </Button>
       </div>
     </section>
