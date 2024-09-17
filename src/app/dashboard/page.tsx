@@ -11,7 +11,7 @@ export default async function Dashboard() {
   if (!session) redirect('/');
 
   return (
-    <section className='min-h-screen w-full flex flex-col items-center gap-14 p-20'>
+    <section className='min-h-screen w-full flex flex-col items-center gap-8 p-20'>
       <h1 className='text-center text-7xl font-extrabold bg-gradient-to-r from-zinc-400 via-stone-800 to-zinc-400  inline-block text-transparent bg-clip-text'>
         Dashboard
       </h1>
@@ -19,6 +19,17 @@ export default async function Dashboard() {
       <p className='text-xl text-muted-foreground tracking-widest'>
         Olá, {session?.user?.name}!
       </p>
+
+      {session?.user?.githubProfile && (
+        <>
+          <p className='text-xl text-muted-foreground tracking-widest'>
+            {session?.user?.githubProfile.bio}
+          </p>
+          <p className='text-xl text-muted-foreground tracking-widest'>
+            {session?.user?.githubProfile.followers} seguidores no GitHub
+          </p>
+        </>
+      )}
 
       <hr className='w-full mx-auto my-2' />
 
